@@ -2,12 +2,6 @@
     "name": "vu/AMQPCarapace",
     "description": "PHP Wrapper for AMQP",
     "license": "BSD-3-Clause",
-    "repositories" : [
-        {
-            "type"  : "composer",
-            "url"   : "http://10.224.41.19/"
-        }
-    ],
     "minimum-stability": "dev",
     "require": {
         "php": "5.4.*",
