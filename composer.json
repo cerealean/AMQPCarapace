@@ -2,9 +2,17 @@
     "name": "vu/AMQPCarapace",
     "description": "PHP Wrapper for AMQP",
     "license": "BSD-3-Clause",
+    "authors" : [
+        {
+            "name" : "Michael Crawford",
+            "homepage" : "https://github.com/cerealean",
+            "email" : "cerealean@me.com",
+            "role" : "Developer"
+        }
+    ],
     "minimum-stability": "dev",
     "require": {
-        "php": "5.4.*",
+        "php": ">=5.4",
         "videlalvaro/php-amqplib" : "2.2.*"
     },
     "require-dev" : {
@@ -12,8 +20,8 @@
         "phake/phake"                           : "v1.0.3"
     },
     "autoload" : {
-        "psr-0" : {
-            "Vu" : "AMQPCarapace/src"
+        "psr-4" : {
+            "Vu\\AMQPCarapace\\" : "./AMQPCarapace/src/Vu/AMQPCarapace"
         }
     }
 }
