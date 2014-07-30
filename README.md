@@ -74,4 +74,4 @@ Closing a Channel or Connection
 Just simply call close on the channel or connection object
 
     $amqp_channel->close();
-    $amqp_connection->close();
+    $amqp_connection->close(); 
