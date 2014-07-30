@@ -1,6 +1,6 @@
 AMQPCarapace
 ============
-
+[![Build Status](https://travis-ci.org/vuhl/AMQPCarapace.svg?branch=master)](https://travis-ci.org/vuhl/AMQPCarapace)
 Introduction
 ------------
 AMQPCarapace is a simple wrapper for [videlalvaro/php-amqplib](https://github.com/videlalvaro/php-amqplib)
