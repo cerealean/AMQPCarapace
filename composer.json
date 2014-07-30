@@ -1,5 +1,5 @@
 {
-    "name": "vu/AMQPCarapace",
+    "name": "vu/amqp-carapace",
     "description": "PHP Wrapper for AMQP",
     "license": "BSD-3-Clause",
     "authors" : [
