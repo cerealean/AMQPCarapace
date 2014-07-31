@@ -13,7 +13,7 @@ Important Notes
 
 Installation Using Composer
 ---------------------------
-Add "vuhl\AMQPCarapace" to the require section of your composer.json file and run a respective install or update.
+Add "vu/amqp-carapace" to the require section of your composer.json file and run a respective install or update.
 For more information on Composer, please visit [their website](https://getcomposer.org/).
 
 Basic Usage
@@ -23,55 +23,65 @@ Creating a Connection
 ---------------------
 Begin by creating a ConnectionSettings object with all of your exchange connection settings
 
-    $connection_settings = new \Vu\AMQPCarapace\Model\ConnectionSettings();
-    $connection_settings->host = "0.0.0.0";
-    $connection_settings->port = 12345;
-    $connection_settings->user = "john";
-    $connection_settings->password = "smith";
+```php
+$connection_settings = new \Vu\AMQPCarapace\Model\ConnectionSettings();
+$connection_settings->host = "0.0.0.0";
+$connection_settings->port = 12345;
+$connection_settings->user = "john";
+$connection_settings->password = "smith";
 
-    $amqp_connection = new \Vu\AMQPCarapace\Connection\Connection();
-    $amqp_connection->connect($connection_settings);
+$amqp_connection = new \Vu\AMQPCarapace\Connection\Connection();
+$amqp_connection->connect($connection_settings);
+```
 
 Creating or Opening a Channel
 -----------------------------
 Using your AMQP connection object, you can create a new channel or retrieve an existing one. This will return an AMQPChannel object which has wrapped the basic functionality of a videlalvaro/php-amqplib AMQPChannel object.
 
-    //Create a new channel
-    $amqp_channel = $amqp_connection->createChannel();
-    //OR retrieve an existing channel
-    $channel_id = 12;
-    $amqp_channel = $amqp_connection->retrieveExistingChannel($channel_id);
+```php
+//Create a new channel
+$amqp_channel = $amqp_connection->createChannel();
+//OR retrieve an existing channel
+$channel_id = 12;
+$amqp_channel = $amqp_connection->retrieveExistingChannel($channel_id);
+```
 
 Publishing a Single Message
 --------------------
 Create a transport object with your exchange-specific information and a message object with your message properties. After creating these objects, you pass them into the basicPublish method.
 
-    $transport = new \Vu\AMQPCarapace\Model\Transport();
-    $transport->exchange = "php_test";
-    $transport->routing_key = "php_key";
+```php
+$transport = new \Vu\AMQPCarapace\Model\Transport();
+$transport->exchange = "php_test";
+$transport->routing_key = "php_key";
 
-    $message = new \Vu\AMQPCarapace\Model\Message();
-    $message->body = "This is my message - rawr";
-    $message->content_type = "text/plain";
-    $message->content_encoding = "UTF-8";
+$message = new \Vu\AMQPCarapace\Model\Message();
+$message->body = "This is my message - rawr";
+$message->content_type = "text/plain";
+$message->content_encoding = "UTF-8";
 
-    $amqp_channel->basicPublish($message, $transport);
+$amqp_channel->basicPublish($message, $transport);
+```
 
 Batch Publishing Messages
 -------------------------
 Use the same transport and message setup as publishing a single message above. Then add each message to the batch publish queue. Finally, call basicPublishBatch();
 
-    //Create messages 1, 2, and 3...
-    //Create transport 2
+```php
+//Create messages 1, 2, and 3...
+//Create transport 2
 
-    $amqp_channel->addMessageToBatchPublishQueue($message_1, $transport);
-    $amqp_channel->addMessageToBatchPublishQueue($message_2, $transport);
-    $amqp_channel->addMessageToBatchPublishQueue($message_3, $transport_2);
-    $amqp_channel->basicPublishBatch(); //Publishes all 3 messages with their separate transport settings
+$amqp_channel->addMessageToBatchPublishQueue($message_1, $transport);
+$amqp_channel->addMessageToBatchPublishQueue($message_2, $transport);
+$amqp_channel->addMessageToBatchPublishQueue($message_3, $transport_2);
+$amqp_channel->basicPublishBatch(); //Publishes all 3 messages with their separate transport settings
+```
 
 Closing a Channel or Connection
 -------------------------------
 Just simply call close on the channel or connection object
 
-    $amqp_channel->close();
-    $amqp_connection->close(); 
+```php
+$amqp_channel->close();
+$amqp_connection->close();
+```
